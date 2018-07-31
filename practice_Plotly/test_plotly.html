@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Plotly -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+</head>
+<body>
+    <div id=forplot style="width:90%;height:500px;"></div>
+</body>
+
+<script>
+    function get_data(){
+        return Math.random();
+    }
+    
+    var plot_area = document.getElementById("forplot")
+    Plotly.plot(plot_area, [{
+        y: [get_data()],
+        type: 'line'
+    }]);
+
+    var ct = 0
+    setInterval(function(){
+
+        Plotly.extendTraces(plot_area, {y: [[get_data()]]}, [0]);
+        ct++;
+        
+        if (ct > 300){
+            Plotly.relayout(plot_area,{
+                xaxis: {range: [ct-300, ct]}
+            })
+        }
+    }, 10);
+</script>
+</html>
