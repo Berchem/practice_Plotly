@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Plotly -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="simple_plotly.js"></script>
+</head>
+<body>
+
+    <div>
+        <p>
+            <span>y = 2<sup>x</sup> </span>
+            <button onclick="prac_00('plot0')">show</button>
+            <button onclick="clearTraces('plot0')">clear</button>
+        </p>
+        <div id=plot0></div>
+    </div>
+
+    <div>
+        <p>
+            <span>y = 2<sup>-x</sup> set color red</span>
+            <button onclick="prac_01('plot1')">show</button>
+            <button onclick="clearTraces('plot1')">clear</button>
+        </p>
+        <div id=plot1></div>
+    </div>
+
+    <div>
+        <p>
+            <span>y = x<sup>2</sup> set color red</span>
+            <button onclick="prac_02('plot2')">show</button>
+            <button onclick="clearTraces('plot2')">clear</button>
+        </p>
+        <div id=plot2></div>
+    </div>
+
+</body>
+</html>
