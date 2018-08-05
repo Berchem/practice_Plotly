@@ -185,5 +185,29 @@ function prac_06(id){
         marker: {size: 12}
     }
 
-    Plotly.plot(ele, trace)
+    trace[1] = {
+        x: [2, 3, 4, 5],
+        y: [Math.random(), Math.random(), Math.random(), Math.random()],
+        mode: "markers+text",
+        type: "scatter",
+        name: "data II",
+        text: ["data2.i", "data2.ii", "data2.iii", "data2.iv"],
+        textposition: "bottom",
+        textfont: {family: "MV boli"},
+        marker: {size: 16}
+    }
+
+    var layout = {
+        xaxis: {
+            title: "xlabel"
+        },
+
+        yaxis: {
+            title: "ylabel"
+        },
+
+        title: "practice layout and tarce label"
+    }
+
+    Plotly.plot(ele, trace, layout)
 }
