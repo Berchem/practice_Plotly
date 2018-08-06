@@ -149,3 +149,86 @@ function plot04(id){
 
     Plotly.plot(ele, trace, layout)
 }
+
+function plot05(id){
+    var ele = document.getElementById(id)
+    var trace = []
+    trace[0] = {
+        x: [52698, 43117],
+        y: [53, 31],
+        name: 'North America',
+        text: ['United States', 'Canada'],
+        mode: "markers",
+        marker: {
+            size: 12
+        }
+    }
+
+    trace[1] = {
+        x: [39317, 37236, 35650, 30066, 29570, 27159, 23557, 21046, 18007],
+        y: [33, 20, 13, 19, 27, 19, 49, 44, 38],
+        name: 'Europe',
+        text: ['Germany', 'Britain', 'France', 'Spain', 'Italy', 'Czech Rep.', 'Greece', 'Poland'],
+        mode: "markers",
+        marker: {
+            size: 12
+        }
+    }
+
+    trace[2] = {
+        x: [42952, 37037, 33106, 17478, 9813, 5253, 4692, 3899],
+        y: [23, 42, 54, 89, 14, 99, 93, 70],
+        name: 'Asia/Pacific',
+        text: ['Australia', 'Japan', 'South Korea', 'Malaysia', 'China', 'Indonesia', 'Philippines', 'India'],
+        mode: "markers",
+        marker: {
+            size: 12
+        }
+    }
+
+    trace[3] = {
+        x: [19097, 18601, 15595, 13546, 12026, 7434, 5419],
+        y: [43, 47, 56, 80, 86, 93, 80],
+        mode: 'markers',
+        name: 'Latin America',
+        text: ['Chile', 'Argentina', 'Mexico', 'Venezuela', 'Venezuela', 'El Salvador', 'Bolivia'],
+        mode: "markers",
+        marker: {
+            size: 12
+        }
+    }
+
+    var layout = {
+        title: 'Quarter 1 Growth',
+        xaxis: {
+            title: 'GDP per Capita',
+            showgrid: false,
+//            zeroline: true
+        },
+        yaxis: {
+            title: 'Percent',
+            showline: false
+        }
+    }
+
+    Plotly.plot(ele, trace, layout)
+}
+
+function plot06(id){
+    var ele = document.getElementById(id)
+    var trace = []
+    for (var i = 0; i < 6; i++)
+        trace[i] = {
+            x: get_xy()[0],
+            y: get_xy()[1],
+            type: "scatter"
+        }
+    for (i = 0; i < trace.length; i++){
+        for (var j = 0; j < trace[i]['x'].length; j++)
+            trace[i]['y'][j] = 3 * (trace[i]['y'][j] + i)
+    }
+
+
+    Plotly.plot(ele, trace)
+}
+
