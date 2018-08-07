@@ -4,9 +4,13 @@ function cleardata(id){
         Plotly.deleteTraces(id, -1)
 }
 
-function get_xy(){
-    var x = [0, 1, 2, 3]
-    var y = [Math.random(), Math.random(), Math.random(), Math.random()]
+function get_xy(...n){
+    var N = (n > 0) ? n : 4
+    var x = [], y = []
+    for (var i = 0; i < N; i++){
+        x[i] = i
+        y[i] = Math.random()
+    }
     return [x, y]
 }
 
@@ -219,16 +223,111 @@ function plot06(id){
     var trace = []
     for (var i = 0; i < 6; i++)
         trace[i] = {
-            x: get_xy()[0],
-            y: get_xy()[1],
-            type: "scatter"
+            x: get_xy(20)[0],
+            y: get_xy(20)[1],
+            type: "scatter",
+            mode: "markers+lines"
         }
     for (i = 0; i < trace.length; i++){
         for (var j = 0; j < trace[i]['x'].length; j++)
-            trace[i]['y'][j] = 3 * (trace[i]['y'][j] + i)
+            trace[i]['y'][j] = 3 * (trace[i]['y'][j] + i + 1)
     }
 
+    trace[0]['line'] = {shape: "linear"}
+    trace[0]['name'] = "linear"
 
-    Plotly.plot(ele, trace)
+    trace[1]['line'] = {shape: "spline"}
+    trace[1]['name'] = "spline"
+
+    trace[2]['line'] = {shape: "vhv"}
+    trace[2]['name'] = "vhv"
+
+    trace[3]['line'] = {shape: "hvh"}
+    trace[3]['name'] = "hvh"
+
+    trace[4]['line'] = {shape: "vh"}
+    trace[4]['name'] = "vh"
+
+    trace[5]['line'] = {shape: "hv"}
+    trace[5]['name'] = "hv"
+
+    var layout = {
+        legend: {
+            traceorder: "reversed",
+            y: 0
+        }
+    }
+
+    Plotly.plot(ele, trace, layout)
+}
+
+function plot07(id){
+    var ele = document.getElementById(id)
+    var trace = []
+    trace[0] = {
+        x: get_xy(10)[0],
+        y: get_xy(10)[1],
+        mode: "markers",
+        name: "scatter",
+    }
+
+    trace[1] = {
+        x: get_xy(10)[0],
+        y: get_xy(10)[1],
+        mode: "lines",
+        name: "lines",
+    }
+
+    trace[2] = {
+        x: get_xy(10)[0],
+        y: get_xy(10)[1],
+        mode: "markers+lines",
+        name: "scatter & line",
+    }
+
+    var layout = {
+        xaxis: {
+            title: "x-axis",
+            zeroline: false,
+//            showline: false
+        },
+
+        yaxis: {
+            title: "y-axis",
+            zeroline: false,
+        },
+
+        title: "title"
+    }
+
+    Plotly.plot(ele, trace, layout)
+}
+
+function plot08(id){
+    var ele = document.getElementById(id)
+    var trace = []
+    var dash = ["solid", "dashdot", "solid", "dot"]
+    for (var i = 0; i < 4; i++)
+        trace[i] = {
+            x: get_xy(10)[0],
+            y: get_xy(10)[1],
+            type: "scatter",
+            mode: "lines",
+            line: {dash: dash[i]},
+            name: dash[i]
+        }
+
+    for (i = 0; i < trace.length; i++){
+        for (var j = 0; j < trace[i]['x'].length; j++)
+            trace[i]['y'][j] = 3 * (trace[i]['y'][j] + i + 1)
+    }
+
+    var layout = {
+        legend: {
+            y: 0.5,
+            traceorder: "reversed"
+        }
+    }
+    Plotly.plot(ele, trace, layout)
 }
 
