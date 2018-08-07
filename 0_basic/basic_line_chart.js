@@ -326,8 +326,33 @@ function plot08(id){
         legend: {
             y: 0.5,
             traceorder: "reversed"
-        }
+        },
+        title: "line dash"
     }
+    Plotly.plot(ele, trace, layout)
+}
+
+function plot09(id){
+    var ele = document.getElementById(id)
+    var trace = []
+    trace[0] = {
+        x: [1, 2, 3, 4, 5, 6, 7, 8],
+        y: [10, 15, null, 17, 14, 12, 10, null, 15],
+        mode: 'lines+markers',
+        connectgaps: true
+    }
+
+    trace[1] = {
+        x: [1, 2, 3, 4, 5, 6, 7, 8],
+        y: [16, null, 13, 10, 8, null, 11, 12],
+        mode: 'lines',
+        name: "without connect gaps"
+    }
+
+    var layout = {
+        title: "connect gaps between data"
+    }
+
     Plotly.plot(ele, trace, layout)
 }
 
